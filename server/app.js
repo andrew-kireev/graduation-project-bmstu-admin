@@ -1,10 +1,10 @@
-var grpcClientAdminProfile = require('./profiles/client/client')
-var express = require('express')
-var ms = require('./profiles/protobuff/admin_profiles_pb');
+const grpcClientAdminProfile = require('./profiles/client/client');
+const express = require('express');
+const ms = require('./profiles/protobuff/admin_profiles_pb');
 
 const app = express()
-const port = 4000
-
+const port = 4000.
+...........
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -27,22 +27,28 @@ app.post('/login', (req, res) => {
 
     createAdminProfileIn.setProfile(profile);
 
-
-    grpcClientAdminProfile.createAdminProfile(ms.createAdminProfileIn, (err, data) => {
+    grpcClientAdminProfile.grpcClientAdminProfile.createAdminProfile(createAdminProfileIn, (err, data) => {
         if (err) {
             console.log(err)
             res.send(err)
             return
         }
 
-        console.log(data)
+        const response = `{Login ${data.login} Password: ${data.password}`;
+        console.log(response)
 
-    });
+        const cookieOptions = {
+            maxAge: 10000 * 60,
+            httpOnly: true,
+            secure: false,
+            path: '/',
+        }
 
-    const response = `{Login ${data.login} Password: ${data.password}`;
-    console.log(response)
+        res.cookie('session_id', data., cookieOptions)
+    })
 
-    // res.send(response)
+
+    res.send("good")
 })
 
 app.listen(port, () => {

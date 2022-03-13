@@ -11,6 +11,7 @@
     "express": "^4.17.3",
     "google-protobuf": "^3.20.0-rc.1",
     "grpc": "^1.24.11",
+    "grpc-tools": "^1.11.2",
     "node-grpc-client": "^1.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

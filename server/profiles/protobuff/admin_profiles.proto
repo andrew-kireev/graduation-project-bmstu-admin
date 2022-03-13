@@ -19,6 +19,7 @@ message AdminProfile {
 }
 message CreateAdminProfileOut {
   CreateAdminProfileError error = 1;
+  string session = 2;
 
   enum CreateAdminProfileError {
     NO_ERROR = 0;
