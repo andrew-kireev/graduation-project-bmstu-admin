@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package admin_profiles;
+option go_package = "github.com/graduation-project-bmstu/internal/app/profiles/delivery/grpc/protobuff";
+
+service AdminProfiles {
+  rpc CreateAdminProfile(CreateAdminProfileIn) returns (CreateAdminProfileOut) {}
+  rpc LoginAdminProfile(LoginAdminProfileIn) returns (LoginAdminProfileInOut) {}
+  rpc LogoutAdminProfile(LoginAdminProfileIn) returns (LoginAdminProfileInOut) {}
+}
+
+message CreateAdminProfileIn {
+  AdminProfile profile = 1;
+}
+
+message AdminProfile {
+  string login = 1;
+  string password = 2;
+}
+message CreateAdminProfileOut {
+  CreateAdminProfileError error = 1;
+  string session = 2;
+
+  enum CreateAdminProfileError {
+    NO_ERROR = 0;
+    ERROR_CREATING_PROFILE = 1;
+  }
+}
+
+message LoginAdminProfileIn {
+  AdminProfile profile = 1;
+}
+
+message LoginAdminProfileInOut {
+  string session = 1;
+  LoginAdminProfileError error = 2;
+
+  enum LoginAdminProfileError {
+    NO_ERROR = 0;
+    ERROR_LOGIN_PROFILE = 1;
+  }
+}
+
+message LogoutAdminProfileIn {
+  AdminProfile profile = 1;
+}
+
+message LogoutAdminProfileInOut {
+  AdminProfile profile = 1;
+  LogoutAdminProfileError error = 2;
+
+  enum LogoutAdminProfileError {
+    NO_ERROR = 0;
+    ERROR_LOGOUT_PROFILE = 1;
+  }
+}
+

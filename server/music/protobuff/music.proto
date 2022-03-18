@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+// protoc --go_out=plugins=grpc:. *.proto
+
+package music;
+
+service MusicService {
+  rpc AddMusic(AddMusicIn) returns (AddMusicOut) {}
+  rpc DeleteMusic(DeleteMusicIn) returns (DeleteMusicOut) {}
+}
+
+message AddMusicIn {
+
+}
+
+message AddMusicOut {
+
+}
+
+message DeleteMusicIn {
+
+}
+
+message DeleteMusicOut {
+
+}
+
+message Music {
+  int64 ID = 1;
+}
+
